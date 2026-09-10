@@ -4,8 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class SaveFlashcards {
+    private static final String PATH = "./src/main/java/nihongodex/saves/Flashcards.ngd";
     public static void save(){
-        File f = new File("./src/main/java/nihongodex/saves/Flashcards.ngd");
+        File f = new File(PATH);
 
                     ArrayList<Flashcard> a = FlashcardBuilder.getListe();
                     a.add(new Flashcard("test", "test", "test", 0));
@@ -33,11 +34,8 @@ public class SaveFlashcards {
     }
 
     public static void load(){
-        File f = new File("../saves/Flashcards.ngd");
-        if(!f.exists()){
-            System.out.println("Pas de sauvegarde trouvée.");
-            return;
-        }
+        File f = new File(PATH);
+
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))){
             ArrayList<Flashcard> tempListe = (ArrayList<Flashcard>) ois.readObject();
             FlashcardBuilder.setListe(tempListe);

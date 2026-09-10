@@ -20,4 +20,10 @@ public class FlashcardBuilder {
         FlashcardBuilder.liste.add(new Flashcard("バス", "basu", "bus", 0));
         FlashcardBuilder.liste.add(new Flashcard("飛行機", "hikouki", "avion", 0));
     }
+
+    public static boolean addFlashcard(Flashcard f){
+        if(liste.contains(f)) return false;
+        liste.add(f);
+        return true;
+    }
 }

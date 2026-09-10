@@ -1,5 +1,6 @@
 package nihongodex.engine;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class MenuActions {
@@ -13,6 +14,7 @@ public class MenuActions {
         }
 
         int option = sc.nextInt();
+        sc.nextLine();
 
         return switch (option) {
             case (1) -> {
@@ -27,7 +29,15 @@ public class MenuActions {
                 SaveFlashcards.load();
                 yield true;
             }
-            case (4) -> false;
+            case (4) -> {
+                if(!FlashcardBuilder.addFlashcard(Flashcard.createFlashcard(sc))){
+                    IO.println("Flashcard déjà existante, veuillez en ajouter une différente.");
+                    yield true;
+                }
+                IO.println("Flashcard créée!");
+                yield true;
+            }
+            case (5) -> false;
             default -> {
                 System.out.println("Option inconnue, veuillez entrer le numéro d'une action valide.");
                 yield true;
